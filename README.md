@@ -18,12 +18,23 @@ The repository uses the app-of-apps pattern:
 2. Replace the template repo URL in all manifests:
 
    ```bash
-   export OLD_URL="https://github.com/catdevdev/gitops-template-argocd.git"
-   export NEW_URL="https://github.com/<owner>/<repo>.git"
-   rg -l "$OLD_URL" | xargs perl -pi -e "s|$OLD_URL|$NEW_URL|g"
+   scripts/set-repo-url.sh
    ```
 
-3. Commit and push your changes.
+   Or pass the URL explicitly:
+
+   ```bash
+   scripts/set-repo-url.sh https://github.com/<owner>/<repo>.git
+   ```
+
+3. Commit and push your changes:
+
+   ```bash
+   git add .
+   git commit -m "Configure repository URL"
+   git push
+   ```
+
 4. Install Argo CD in the cluster.
 5. Bootstrap the root application:
 
