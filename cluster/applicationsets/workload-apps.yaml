@@ -1,0 +1,42 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: workload-apps
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "10"
+spec:
+  goTemplate: true
+  goTemplateOptions:
+    - missingkey=error
+  generators:
+    - git:
+        repoURL: https://github.com/catdevdev/gitops-template-argocd.git
+        revision: main
+        files:
+          - path: apps/*/app.yaml
+  template:
+    metadata:
+      name: "{{.name}}"
+      namespace: argocd
+      labels:
+        app.kubernetes.io/part-of: single-cluster
+        gitops.layer: workloads
+      finalizers:
+        - resources-finalizer.argocd.argoproj.io
+    spec:
+      project: single-cluster
+      source:
+        repoURL: https://github.com/catdevdev/gitops-template-argocd.git
+        targetRevision: main
+        path: "{{.sourcePath}}"
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: "{{.namespace}}"
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
+          - ServerSideApply=true

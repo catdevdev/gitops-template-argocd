@@ -1,0 +1,3 @@
+name: sample-web
+namespace: sample-web
+sourcePath: apps/sample-web/manifests

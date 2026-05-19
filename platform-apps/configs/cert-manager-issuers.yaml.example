@@ -1,0 +1,3 @@
+name: cert-manager-issuers
+sourcePath: platform/cert-manager-issuers/base
+namespace: cert-manager

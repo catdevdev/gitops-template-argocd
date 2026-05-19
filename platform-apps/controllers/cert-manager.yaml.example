@@ -1,0 +1,9 @@
+name: cert-manager
+repoURL: https://charts.jetstack.io
+chart: cert-manager
+targetRevision: v1.20.2
+releaseName: cert-manager
+namespace: cert-manager
+values: |
+  crds:
+    enabled: true
