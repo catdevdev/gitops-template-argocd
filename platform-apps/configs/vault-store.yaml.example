@@ -1,3 +1,0 @@
-name: vault-store
-sourcePath: platform/external-secrets/vault-store/base
-namespace: external-secrets

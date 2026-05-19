@@ -11,12 +11,6 @@ spec:
   description: Applications for one Kubernetes cluster managed from this GitOps repository.
   sourceRepos:
     - https://github.com/catdevdev/gitops-template-argocd.git
-    - https://charts.jetstack.io
-    - https://charts.external-secrets.io
-    - https://kubernetes-sigs.github.io/external-dns/
-    - https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner/
-    - https://stefanprodan.github.io/podinfo
-    - https://charts.bitnami.com/bitnami
   destinations:
     - server: https://kubernetes.default.svc
       namespace: "*"
